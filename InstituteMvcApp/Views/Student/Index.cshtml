@@ -1,0 +1,67 @@
+﻿@model IEnumerable<InstituteMvcApp.Models.Student>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@*
+@{
+    //string role = (string)ViewData["role"];
+    string role = (string)ViewBag.Role;
+    if (role == "Admin")
+    {
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    }
+}
+*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RollNo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.BatchCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StudentAddress)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RollNo)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.BatchCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StudentAddress)
+            </td>
+            <td>
+                    @Html.ActionLink("Edit", "Edit", new { rno = item.RollNo }) |
+                    @Html.ActionLink("Details", "Details", new { rno = item.RollNo }) |
+                    @Html.ActionLink("Delete", "Delete", new { rno = item.RollNo }) |
+                    @Html.ActionLink("By Batch Code", "ByBatchCode", new { bc = item.BatchCode })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

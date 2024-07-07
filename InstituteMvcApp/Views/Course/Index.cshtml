@@ -1,0 +1,65 @@
+﻿@model IEnumerable<InstituteMvcApp.Models.Course>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+
+@*
+@{
+    //string role = (string)ViewData["role"];
+    string role = (string)ViewBag.Role;
+    if (role == "Admin")
+    {
+        <p>
+            <a asp-action="Create">Create New</a>
+        </p>
+    }
+}
+*@
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseCode)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseTitle)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.CourseFee)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseCode)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseTitle)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Duration)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.CourseFee)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { cc= item.CourseCode }) |
+                    @Html.ActionLink("Details", "Details", new { cc = item.CourseCode }) |
+                    @Html.ActionLink("Delete", "Delete", new { cc = item.CourseCode })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
